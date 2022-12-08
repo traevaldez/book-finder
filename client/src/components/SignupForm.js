@@ -63,7 +63,7 @@ const SignupForm = () => {
             placeholder='Your username'
             name='username'
             onChange={handleChange}
-            value={userFormData.username}
+            value={formState.username}
             required
           />
           <Form.Control.Feedback type='invalid'>
@@ -78,7 +78,7 @@ const SignupForm = () => {
             placeholder='Your email address'
             name='email'
             onChange={handleChange}
-            value={userFormData.email}
+            value={formState.email}
             required
           />
           <Form.Control.Feedback type='invalid'>
@@ -93,7 +93,7 @@ const SignupForm = () => {
             placeholder='Your password'
             name='password'
             onChange={handleChange}
-            value={userFormData.password}
+            value={formState.password}
             required
           />
           <Form.Control.Feedback type='invalid'>
@@ -101,11 +101,14 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+          disabled={!(formState.username && formState.email && formState.password)}
           type='submit'
           variant='success'>
           Submit
         </Button>
+        { error && <div>
+            Sign up failed
+          </div>}
       </Form>
     </>
   );

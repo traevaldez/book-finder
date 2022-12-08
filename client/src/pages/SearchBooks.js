@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 import { useMutation } from '@apollo/client';
@@ -27,7 +27,7 @@ const SearchBooks = () => {
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  const [saveBook, { error }] = useMutation(SAVE_BOOK, {
+  const [saveBook] = useMutation(SAVE_BOOK, {
     update(cache, { data: { saveBook } }) {
       try {
         const { me } = cache.readQuery({
@@ -108,6 +108,7 @@ const SearchBooks = () => {
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
       saveBookIds(saveBookIds);
     } catch (err) {
+     
       console.error(err);
     }
   };

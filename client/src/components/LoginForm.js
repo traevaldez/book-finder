@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/auth';
+import { LOGIN_USER } from '../utils/mutations';
 
 const LoginForm = () => {
   const [validated] = useState(false);
@@ -55,7 +55,7 @@ const LoginForm = () => {
             placeholder='Your email'
             name='email'
             onChange={handleChange}
-            value={userFormData.email}
+            value={formState.email}
             required
           />
           <Form.Control.Feedback type='invalid'>
@@ -72,7 +72,7 @@ const LoginForm = () => {
             placeholder='Your password'
             name='password'
             onChange={handleChange}
-            value={userFormData.password}
+            value={formState.password}
             required
           />
           <Form.Control.Feedback type='invalid'>
@@ -80,7 +80,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
+          disabled={!(formState.email && formState.password)}
           type='submit'
           variant='success'>
           Submit
